@@ -1,7 +1,6 @@
 import React from "react";
 
 import Map from "../../components/map/map.component";
-import BaseNav from "../../components/basenav/basenav.component";
 import "./homepage.style.scss";
 
 class HomePage extends React.Component {
@@ -14,19 +13,18 @@ class HomePage extends React.Component {
 
   handleClick = () => {
     this.setState({
-      id: 2,
+      id: this.state.id + 1,
     });
     console.log(this.state);
   };
 
-
   render() {
-    const {id} = this.state
-    console.log(id)
     return (
       <div className="home-page">
-        <button type="submit" onClick={this.handleClick}>Click Me</button>
-        <Map id={id} />
+        <button onClick={this.handleClick}>
+          Change State of Map
+        </button>
+        <Map id={this.state.id} />
       </div>
     );
   }

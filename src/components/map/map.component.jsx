@@ -6,15 +6,30 @@ import LayerList from "@arcgis/core/widgets/LayerList";
 import POLLUTION_DATA from "./pollution.data.js";
 import "./map.style.scss";
 
-function Map(props){
-  const { id } = props;
-  const [data, setData] = useState(POLLUTION_DATA);
+function Map({ id }) {
+  const [state, setState] = useState({
+    id: id,
+    data: POLLUTION_DATA,
+  });
+
+  if (id !== state.id) {
+    setState((prevState) => {
+      return {
+        ...prevState,
+        id: id,
+      };
+    });
+  }
+
   const layers = [];
-  console.log(id);
+  console.log(state);
+  console.log(state.id);
 
   const mapDiv = useRef(null);
 
   useEffect(() => {
+    console.log("we got here");
+
     if (mapDiv.current) {
       // Initialize Map
       const map = new ArcGISMap({
@@ -30,11 +45,9 @@ function Map(props){
         maxScale: 10000,
       });
 
-      data.map((data) => {
-        if (id === data.id) {
-          console.log(data.layers);
+      state.data.map((data) => {
+        if (state.id === data.id) {
           data.layers.map((layer) => {
-            // console.log(layer)
             layers.push(layer);
           });
         }
@@ -49,9 +62,9 @@ function Map(props){
 
       map.addMany(layers);
     }
-  }, []);
+  }, [state.id]);
 
   return <div className="mapDiv" ref={mapDiv}></div>;
-};
+}
 
 export default Map;
