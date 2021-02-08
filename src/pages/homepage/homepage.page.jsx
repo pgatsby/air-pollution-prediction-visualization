@@ -1,6 +1,7 @@
 import React from "react";
 
-import Map from "../../components/map/map.component";
+import Map from "../../components/map/map.component.jsx";
+import MapForm from "../../components/mapform/mapform.component.jsx";
 import "./homepage.style.scss";
 
 class HomePage extends React.Component {
@@ -11,19 +12,25 @@ class HomePage extends React.Component {
     };
   }
 
-  handleClick = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  handleClick = (event) => {
+    const { value, name } = event.target;
     this.setState({
-      id: this.state.id + 1,
+      [name]: value.type === "number" ? value : parseInt(value),
     });
-    console.log(this.state);
   };
 
   render() {
     return (
       <div className="home-page">
-        <button onClick={this.handleClick}>
-          Change State of Map
-        </button>
+        <MapForm
+          id={this.state.id}
+          handleSubmit={this.handleSubmit}
+          handleClick={this.handleClick}
+        />
         <Map id={this.state.id} />
       </div>
     );

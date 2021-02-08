@@ -22,14 +22,12 @@ function Map({ id }) {
   }
 
   const layers = [];
-  console.log(state);
-  console.log(state.id);
+  // console.log(state);
+  // console.log(state.id);
 
   const mapDiv = useRef(null);
 
   useEffect(() => {
-    console.log("we got here");
-
     if (mapDiv.current) {
       // Initialize Map
       const map = new ArcGISMap({
@@ -62,7 +60,7 @@ function Map({ id }) {
 
       map.addMany(layers);
     }
-  }, [state.id]);
+  }, [state]);
 
   return <div className="mapDiv" ref={mapDiv}></div>;
 }

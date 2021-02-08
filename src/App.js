@@ -2,9 +2,9 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 
-import Navbar from "./components/navbar/navbar.component";
-import HomePage from "./pages/homepage/homepage.page";
-import FaqPage from "./pages/faq/faq.page";
+import Navbar from "./components/navbar/navbar.component.jsx";
+import HomePage from "./pages/homepage/homepage.page.jsx";
+import FaqPage from "./pages/faq/faq.page.jsx";
 import 'bootstrap/dist/js/bootstrap.js';
 
 class App extends React.Component {
