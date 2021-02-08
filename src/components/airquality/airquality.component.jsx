@@ -37,7 +37,7 @@ class AirQuality extends React.Component {
             </form>
           </div>
         </div>
-        <h1 className="text-center">Current Forcast For Los Angeles</h1>
+        
         <div className="row pt-4 pb-4"></div>
       </div>
     );
