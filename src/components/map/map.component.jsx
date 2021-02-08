@@ -55,9 +55,9 @@ function Map({ id }) {
         var layerList = new LayerList({
           view: view,
         });
-        view.ui.add(layerList, "top-right");
+        view.ui.add(layerList, "top-left");
       });
-
+      view.ui.move("zoom", "top-right");
       map.addMany(layers);
     }
   }, [state]);

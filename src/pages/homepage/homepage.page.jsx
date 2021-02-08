@@ -24,8 +24,8 @@ class HomePage extends React.Component {
     });
   };
 
-  scrollUp(){
-    window.scrollTo(0,0);
+  scrollUp() {
+    window.scrollTo(0, 0);
   }
 
   render() {
@@ -38,7 +38,15 @@ class HomePage extends React.Component {
           handleClick={this.handleClick}
         />
         <Map id={this.state.id} />
-        <div className="home-page-footer"><button className="btn btn-dark" id="scroll-up" onClick={this.scrollUp}><i className="fas fa-chevron-double-up"></i></button></div>
+        <div className="home-page-footer">
+          <button
+            className="btn btn-dark"
+            id="scroll-up"
+            onClick={this.scrollUp}
+          >
+            <i className="fas fa-chevron-double-up"></i>
+          </button>
+        </div>
       </div>
     );
   }

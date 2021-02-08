@@ -5,7 +5,7 @@ import "./mapform.style.scss";
 const MapForm = ({ handleSubmit, handleClick, id }) => (
   <form onSubmit={handleSubmit}>
     <button
-      className={"btn btn-primary " + (id == 1 ? "active" : "")}
+      className={"btn btn-warning " + (id == 1 ? "active" : "")}
       name="id"
       value={1}
       onClick={handleClick}
@@ -14,7 +14,7 @@ const MapForm = ({ handleSubmit, handleClick, id }) => (
       Air Quality
     </button>
     <button
-      className={"btn btn-primary " + (id == 2 ? "active" : "")}
+      className={"btn btn-warning " + (id == 2 ? "active" : "")}
       name="id"
       value={2}
       onClick={handleClick}
