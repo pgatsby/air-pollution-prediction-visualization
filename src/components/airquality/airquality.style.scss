@@ -1,0 +1,30 @@
+@font-face {
+    font-family: Overpass;
+    src: url('../../static/fonts/overpass-bold.otf');
+}
+
+.air-quality {
+    height: 100vh;
+}
+
+#aq-title {
+    font-family: Overpass;
+    font-size: 5rem;
+    line-height: 3.9rem;
+}
+
+#explore {
+    background-color: #ffc107;
+    color: #000;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    border: none;
+    &:hover {
+        color: #fff;
+        background-color: #212529;
+        i {
+            transition: all 0.3s ease;
+            transform: rotateZ(90deg)
+        }
+    }
+}

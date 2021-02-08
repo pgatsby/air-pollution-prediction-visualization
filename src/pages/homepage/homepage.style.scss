@@ -4,3 +4,15 @@
     height: 100%;
     width: 100%;
 }
+
+.home-page-footer{
+    position: relative;
+}
+
+#scroll-up{
+    position: absolute;
+    left:0;
+    margin: 0 auto;
+    right: 0;
+    top: -65px;
+}
