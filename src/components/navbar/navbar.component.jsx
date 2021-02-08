@@ -10,7 +10,7 @@ const Navbar = () => (
     <div className="container-fluid">
       <span className="navbar-brand mb-0 h1">
         <Logo className="logo" />
-        City of Los Angeles
+        AIr Pollution
       </span>
       <button
         className="navbar-toggler"

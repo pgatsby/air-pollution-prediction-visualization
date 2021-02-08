@@ -11,7 +11,7 @@ const MapForm = ({ handleSubmit, handleClick, id }) => (
       onClick={handleClick}
       type="submit"
     >
-      Change State of Map to 1
+      Air Quality
     </button>
     <button
       className={"btn btn-primary " + (id == 2 ? "active" : "")}
@@ -20,7 +20,7 @@ const MapForm = ({ handleSubmit, handleClick, id }) => (
       onClick={handleClick}
       type="submit"
     >
-      Change State of Map to 2
+      Causes of Air Pollution
     </button>
   </form>
 );

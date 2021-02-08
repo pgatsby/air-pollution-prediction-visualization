@@ -62,7 +62,7 @@ function Map({ id }) {
     }
   }, [state]);
 
-  return <div className="mapDiv" ref={mapDiv}></div>;
+  return <div className="mapDiv" ref={mapDiv} id="map"></div>;
 }
 
 export default Map;
