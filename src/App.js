@@ -5,7 +5,7 @@ import "./App.css";
 import Navbar from "./components/navbar/navbar.component.jsx";
 import HomePage from "./pages/homepage/homepage.page.jsx";
 import FaqPage from "./pages/faq/faq.page.jsx";
-import 'bootstrap/dist/js/bootstrap.js';
+import "bootstrap/dist/js/bootstrap.js";
 
 class App extends React.Component {
   render() {

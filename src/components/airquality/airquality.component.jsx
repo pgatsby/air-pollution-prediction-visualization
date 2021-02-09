@@ -8,7 +8,7 @@ class AirQuality extends React.Component {
     this.url = "https://api.weatherbit.io/v2.0/current?postal_code=";
     this.key = "fcdc42ccf3e84edbb3f31b586099d417";
     this.state = {
-      postal_code: "90037",
+      postalCode: "90012",
       cityName: null,
       stateCode: null,
       aqiCode: null,
@@ -17,8 +17,8 @@ class AirQuality extends React.Component {
     };
   }
 
-  retrieveData(postal_code) {
-    fetch(this.url + this.state.postal_code + "&key=" + this.key)
+  retrieveData(postalCode) {
+    fetch(this.url + this.state.postalCode + "&key=" + this.key)
       .then((response) => response.json())
       .then(({ data }) => {
         console.log(data[0]);
@@ -40,8 +40,17 @@ class AirQuality extends React.Component {
   }
 
   handleSubmit = (event) => {
-    console.log("we made it here");
     event.preventDefault();
+    console.log(this.state.postalCode)
+    this.retrieveData(this.state.postalCode);
+  };
+
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log(value)
+    this.setState({
+      [name]: value,
+    });
   };
 
   render() {
@@ -53,9 +62,6 @@ class AirQuality extends React.Component {
               LOS ANGELES <br />
               AIR QUALITY
             </h1>
-            <button className="btn btn-dark" id="explore">
-              Explore <i className="fas fa-arrow-right"></i>
-            </button>
           </div>
           <div className="col-12 col-lg-6 pb-4">
             <form onSubmit={this.handleSubmit}>
@@ -64,16 +70,27 @@ class AirQuality extends React.Component {
                 className="form-control form-control-lg"
                 type="text"
                 placeholder="Enter Zip Code Here"
+                onChange={this.handleChange}
+                name="postalCode"
                 id="aq-lookup"
               />
             </form>
             <div className="aq-details mt-3">
               <h2>Current Air Quality</h2>
               <div className="aq-d-location">
-                <strong>{this.state.cityName}, {this.state.stateCode}</strong>
+                <strong>
+                  Location: {this.state.cityName}, {this.state.stateCode}
+                </strong>
               </div>
               <div className="aq-d-aqi">
-                AQI: {this.state.aqiCode} 
+                Air Quality Index: {this.state.aqiCode}
+              </div>
+              <div className="aq-weather">
+                <img
+                  id="aq-weather-icon"
+                  src={"/weather-icons/" + this.state.weatherIcon + ".png"}
+                  alt="weather-icon"
+                />
               </div>
             </div>
           </div>

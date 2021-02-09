@@ -2,8 +2,8 @@ import React from "react";
 
 import "./mapform.style.scss";
 
-const MapForm = ({ handleSubmit, handleClick, id }) => (
-  <form onSubmit={handleSubmit}>
+const MapForm = ({ handleSubmit, handleClick, id, className }) => (
+  <form onSubmit={handleSubmit} className={className}>
     <button
       className={"btn btn-warning " + (id == 1 ? "active" : "")}
       name="id"

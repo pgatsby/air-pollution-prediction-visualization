@@ -3,14 +3,13 @@
     src: url('../../static/fonts/overpass-bold.otf');
 }
 
-// .air-quality {
-//     height: 100vh;
-// }
+.air-quality {
+    margin-bottom: 80px;
+}
 
 #aq-title {
     font-family: Overpass;
     font-size: 5rem;
-    line-height: 3.9rem;
 }
 
 #explore {
@@ -27,4 +26,9 @@
             transform: rotateZ(90deg)
         }
     }
+}
+
+#aq-weather-icon{
+    width: 100px;
+    height: auto;
 }

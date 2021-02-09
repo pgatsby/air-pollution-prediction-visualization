@@ -8,6 +8,7 @@ import "./homepage.style.scss";
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
+    this.listRef = React.createRef();
     this.state = {
       id: 1,
     };
@@ -15,6 +16,7 @@ class HomePage extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.listRef.current.innerHTML = "";
   };
 
   handleClick = (event) => {
@@ -23,10 +25,6 @@ class HomePage extends React.Component {
       [name]: value.type === "number" ? value : parseInt(value),
     });
   };
-
-  scrollUp() {
-    window.scrollTo(0, 0);
-  }
 
   render() {
     return (
@@ -37,15 +35,17 @@ class HomePage extends React.Component {
           handleSubmit={this.handleSubmit}
           handleClick={this.handleClick}
         />
-        <Map id={this.state.id} />
-        <div className="home-page-footer">
-          <button
-            className="btn btn-dark"
-            id="scroll-up"
-            onClick={this.scrollUp}
-          >
-            <i className="fas fa-chevron-double-up"></i>
-          </button>
+        <div className="map-row row h-100 w-100">
+          <div className="col-12 col-md-2">
+            <div
+              className="layerlist-content"
+              id="layerlist"
+              ref={this.listRef}
+            ></div>
+          </div>
+          <div className="col-12 col-md-10">
+            <Map id={this.state.id} />
+          </div>
         </div>
       </div>
     );

@@ -52,11 +52,12 @@ function Map({ id }) {
       });
 
       view.when(() => {
-        var layerList = new LayerList({
+        new LayerList({
           view: view,
+          container: "layerlist",
         });
-        view.ui.add(layerList, "top-left");
       });
+
       view.ui.move("zoom", "top-right");
       map.addMany(layers);
     }

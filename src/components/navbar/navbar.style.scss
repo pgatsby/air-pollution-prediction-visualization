@@ -3,3 +3,11 @@
     height: auto;
     margin-right: 0.5rem;
 }
+.nav-link{
+    font-weight: 600;
+
+    &:hover{
+        color: #000!important;
+        transition: 0.3s ease;
+    }
+}

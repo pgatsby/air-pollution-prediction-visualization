@@ -6,7 +6,7 @@ import { ReactComponent as Logo } from "../../static/images/LosAngelesLogo.svg";
 import "./navbar.style.scss";
 
 const Navbar = () => (
-  <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div className="container-fluid">
       <span className="navbar-brand mb-0 h1">
         <Logo className="logo" />
