@@ -25,6 +25,7 @@ class AirQuality extends React.Component {
         console.log(data[0].aqi);
         console.log(data[0].weather.code);
         this.setState({
+          postalCode: "",
           cityName: data[0].city_name,
           stateCode: data[0].state_code,
           aqiCode: data[0].aqi,
@@ -42,8 +43,13 @@ class AirQuality extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state.postalCode)
-    this.retrieveData(this.state.postalCode);
-  };
+    try{
+      this.retrieveData(this.state.postalCode);
+    }catch(e){
+      alert("Not a valid Zip Code!")
+    }
+    this.setState({"postalCode" : ""})
+  };   
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -59,8 +65,8 @@ class AirQuality extends React.Component {
         <div className="row pt-4 pb-4">
           <div className="col-12 col-lg-6 pb-4">
             <h1 className="align-self-center" id="aq-title">
-              LOS ANGELES <br />
-              AIR QUALITY
+              {this.state.cityName}<br />
+               AIR QUALITY
             </h1>
           </div>
           <div className="col-12 col-lg-6 pb-4">
@@ -70,6 +76,7 @@ class AirQuality extends React.Component {
                 className="form-control form-control-lg"
                 type="text"
                 placeholder="Enter Zip Code Here"
+                value={this.state.postalCode}
                 onChange={this.handleChange}
                 name="postalCode"
                 id="aq-lookup"
@@ -86,6 +93,7 @@ class AirQuality extends React.Component {
                 Air Quality Index: {this.state.aqiCode}
               </div>
               <div className="aq-weather">
+                
                 <img
                   id="aq-weather-icon"
                   src={"/weather-icons/" + this.state.weatherIcon + ".png"}
