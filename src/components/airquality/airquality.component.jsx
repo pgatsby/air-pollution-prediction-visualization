@@ -19,6 +19,7 @@ class AirQuality extends React.Component {
       weatherTemp: [null,null,null,null,null],
       weatherMinTemp: [null,null,null,null,null],
       weatherMaxTemp: [null,null,null,null,null],
+      date:[null,null,null,null,null]
     };
   }
 
@@ -34,7 +35,10 @@ class AirQuality extends React.Component {
           weatherTemp:    [data.data[0].temp, data.data[1].temp, data.data[2].temp ,data.data[3].temp ,data.data[4].temp],
           weatherMinTemp: [data.data[0].min_temp, data.data[1].min_temp, data.data[2].min_temp ,data.data[3].min_temp ,data.data[4].min_temp],
           weatherMaxTemp: [data.data[0].max_temp, data.data[1].max_temp, data.data[2].max_temp ,data.data[3].max_temp ,data.data[4].max_temp],
-          weatherIcon:    [data.data[0].weather.icon,data.data[1].weather.icon,data.data[2].weather.icon,data.data[3].weather.icon,data.data[4].weather.icon]
+          weatherIcon:    [data.data[0].weather.icon,data.data[1].weather.icon,data.data[2].weather.icon,data.data[3].weather.icon,data.data[4].weather.icon] ,
+          date: [data.data[0].datetime, data.data[1].datetime, data.data[2].datetime ,data.data[3].datetime ,data.data[4].datetime]
+
+          
         });
       });
 
@@ -107,12 +111,16 @@ class AirQuality extends React.Component {
               </div>
               <div className="weather-search-results">
                 <div className="row" id="row">
-                    <div className="col-md holder">   
+                    <div className="col-md holder">
+                        <div>
+                            <b> {this.state.date[0]}</b>
+                         </div>
                         <img
                           id="aq-weather-icon"
                           src={"/weather-icons/" + this.state.weatherIcon[0] + ".png"}
                           alt="weather-icon"
                         />
+                        
                          <div>
                             Temp: {this.state.weatherTemp[0]}
                          </div>
@@ -122,9 +130,14 @@ class AirQuality extends React.Component {
                          <div>
                             Max Temp: {this.state.weatherMaxTemp[0]}
                          </div>
+                         
+                         
 
                     </div>
                     <div className="col-md holder">
+                        <div>
+                            <b> {this.state.date[1]}</b>
+                         </div>
                         <img
                           id="aq-weather-icon"
                           src={"/weather-icons/" + this.state.weatherIcon[1] + ".png"}
@@ -141,6 +154,9 @@ class AirQuality extends React.Component {
                          </div>
                     </div>
                     <div className="col-md holder">
+                        <div>
+                            <b> {this.state.date[2]}</b>
+                         </div>
                         <img
                           id="aq-weather-icon"
                           src={"/weather-icons/" + this.state.weatherIcon[2] + ".png"}
@@ -157,6 +173,9 @@ class AirQuality extends React.Component {
                          </div>
                     </div>
                     <div className="col-md holder">
+                        <div>
+                            <b> {this.state.date[3]}</b>
+                         </div>
                         <img
                           id="aq-weather-icon"
                           src={"/weather-icons/" + this.state.weatherIcon[3] + ".png"}
@@ -173,6 +192,9 @@ class AirQuality extends React.Component {
                          </div>
                     </div>
                     <div className="col-md holder">
+                        <div>
+                            <b> {this.state.date[4]}</b>
+                         </div>
                         <img
                           id="aq-weather-icon"
                           src={"/weather-icons/" + this.state.weatherIcon[4] + ".png"}
