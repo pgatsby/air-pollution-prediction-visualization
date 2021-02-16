@@ -5,6 +5,8 @@ import MapForm from "../../components/mapform/mapform.component.jsx";
 import Map from "../../components/map/map.component.jsx";
 import PieChart from "../../components/graphs/piechart.component.jsx";
 import "./homepage.style.scss";
+import AirQualityLineChart from "../../components/graphs/airqualitylinechart.component.jsx";
+import EmissionsLinechart from "../../components/graphs/emissionlinechart.component.jsx";
 
 
 class HomePage extends React.Component {
@@ -69,6 +71,10 @@ class HomePage extends React.Component {
               { y: 3, label: "Acute Lower Respiratory Infections in Children"}
             ]
           }/>
+          <br/>
+          <AirQualityLineChart/>
+          <br/>
+          <EmissionsLinechart/>
         </div>
         <div class='article-container dashboard'>
           Articles go here
