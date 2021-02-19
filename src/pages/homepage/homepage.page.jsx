@@ -7,6 +7,7 @@ import PieChart from "../../components/graphs/piechart.component.jsx";
 import "./homepage.style.scss";
 import AirQualityLineChart from "../../components/graphs/airqualitylinechart.component.jsx";
 import EmissionsLinechart from "../../components/graphs/emissionlinechart.component.jsx";
+import Historical2020 from "../../components/graphs/historical2020.component.jsx";
 
 
 class HomePage extends React.Component {
@@ -75,6 +76,8 @@ class HomePage extends React.Component {
           <AirQualityLineChart/>
           <br/>
           <EmissionsLinechart/>
+          <br/>
+          <Historical2020/>
         </div>
         <div class='article-container dashboard'>
           Articles go here
