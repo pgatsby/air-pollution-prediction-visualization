@@ -53,17 +53,17 @@ class HomePage extends React.Component {
           </div>
         </div>
         <div class='graph-container dashboard'>
-          <PieChart title="Greenhouse Gas Emissions By Sectors" dataPoints={
+          <PieChart title="Greenhouse Gas Emissions By Sectors (EPA)" dataPoints={
             [
-              { y: 21, label: "Industry" },
-              { y: 14, label: "Transport" },
-              { y: 35, label: "Energy" },
-              { y: 6, label: "Buildings" },
-              { y: 24, label: "Agriculture" }
+              { y: 22, label: "Industry" },
+              { y: 28, label: "Transport" },
+              { y: 27, label: "Electricity" },
+              { y: 12, label: "Commercial and Residential" },
+              { y: 10, label: "Agriculture" }
             ]
           }/>
           <br/>
-          <PieChart title="Deaths Caused by Ambient Air Pollution" dataPoints={
+          <PieChart title="Deaths Caused by Ambient Air Pollution (WHO)" dataPoints={
             [
               { y: 40, label: "Ischemic Heart Disease"},
               { y: 40, label: "Stroke"},

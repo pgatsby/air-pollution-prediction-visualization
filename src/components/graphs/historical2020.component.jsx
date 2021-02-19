@@ -12,7 +12,7 @@ class Historical2020 extends Component{
             exportEnabled: true,
             theme: "light2",
             title: {
-                text: "Air Quality Trends in the US in 2020"
+                text: "Air Quality Trends in the US in 2020 (AQICN)"
             },
             axisY:{
                 title: "Levels of Air Pollutants",
