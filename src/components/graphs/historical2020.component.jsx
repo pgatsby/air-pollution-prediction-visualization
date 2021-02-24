@@ -5,184 +5,140 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class Historical2020 extends Component{
 
-    render(){
+    constructor(props){
+        super(props);
+        this.state = {
+        historicalUrl: "https://api.weatherbit.io/v2.0/history/airquality?city=Los%20Angeles&country=United%20States&state=CA&key=",
+        key: "fcdc42ccf3e84edbb3f31b586099d417",
+        pm10: [],
+        pm25: [],
+        o3: [],
+        so2: [],
+        no2: [],
+        co: [],
+        
+        }
+    }
 
+    retrieveData(){
+        fetch(this.state.historicalUrl + this.state.key)
+            .then((response) => response.json())
+            .then(data => {
+                let newPM10 = [];
+                let newPM25 = [];
+                let newO3 = [];
+                let newSO2 = [];
+                let newNO2 = [];
+                let newCO = [];
+                data.data.forEach(e => {
+                    newPM10.push({x: Date.parse(e.timestamp_local), y: e.pm10});
+                    newPM25.push({x: Date.parse(e.timestamp_local), y: e.pm25});
+                    newO3.push({x: Date.parse(e.timestamp_local), y: e.o3});
+                    newSO2.push({x: Date.parse(e.timestamp_local), y: e.so2});
+                    newNO2.push({x: Date.parse(e.timestamp_local), y: e.no2});
+                    newCO.push({x: Date.parse(e.timestamp_local), y: e.co});
+                });
+
+                this.setState({
+                    pm10: newPM10,
+                    pm25: newPM25,
+                    o3: newO3,
+                    so2: newSO2,
+                    no2: newNO2,
+                    co: newCO
+                });
+            });
+
+        
+    }
+
+    componentWillMount(){
+        this.retrieveData();
+    }
+    
+    render(){
         const options = {
             animationEnabled: true,
             exportEnabled: true,
             theme: "light2",
             title: {
-                text: "Air Quality Trends in the US in 2020 (AQICN)"
+                text: "Real-Time Historical Air Quality Data in the Past 3 Days (WeatherBit)"
+            },
+            axisX:{
+                title: "Time",
+                interval: 6,
+                intervalType: "hour",
+                valueFormatString: "MMM DD hh TT K",
+                labelAngel: -20,
+                labelFontSize: 16,
             },
             axisY:{
-                title: "Levels of Air Pollutants",
-                interval: 5
-            },
-            axisX: {
-                title: "Month",
-                prefix: "M",
-                interval: 1,
-                stripLines: [
-                    {
-                        value: 8.5,
-                        label: "Fires",
-                        thickness: 5,
-                        color: "red",
-                        labelFontColor: "black"
-
-                    },
-                    {
-                        value: 11,
-                        thickness: 5,
-                        color: "red"
-                    },
-                    {
-                        value: 3,
-                        label: "Lockdown Started",
-                        thickness: 5,
-                        color: "darkgrey",
-                        labelFontColor: "black"
-                    }
-
-                ]
+                title: "Measured Level of Air Pollutant",
+                interval: 25,
+                labelFontSize: 12,
+                tickLength: 20
             },
             legend:{
                 cursor: "pointer",
                 verticalAlign: "top",
                 horizontalAlign: "center",
                 dockInsidePlotArea: false
-            },
+                },
             toolTip:{
                 shared: true
             },
-            data:[
-
+            height: 600,
+            
+            data: [
                 {
-                    type: "line",
-                    toolTipContent: "Level of {name} Produced during M{x}: {y}",
-                    name: "PM2.5",
-                    showInLegend: true,
-                    dataPoints: [
-                        {x: 1, y: 53.9},
-                        {x: 2, y: 47.9},
-                        {x: 3, y: 30.8},
-                        {x: 4, y: 40.0},
-                        {x: 5, y: 46.4},
-                        {x: 6, y: 40.1},
-                        {x: 7, y: 55.9},
-                        {x: 8, y: 60.6},
-                        {x: 9, y: 83.5},
-                        {x: 10, y: 74.1},
-                        {x: 11, y: 56.2},
-                        {x: 12, y: 56.0}
-                    ]
-                },
-                {
-                    type: "line",
-                    toolTipContent: "Level of {name} Produced during M{x}: {y}",
+                    type:"spline",
+                    xValueType: "dateTime",
                     name: "PM10",
                     showInLegend: true,
-                    dataPoints: [
-                        {x: 1, y: 30.5},
-                        {x: 2, y: 32.2},
-                        {x: 3, y: 17.4},
-                        {x: 4, y: 22.3},
-                        {x: 5, y: 26.4},
-                        {x: 6, y: 22.8},
-                        {x: 7, y: 29.5},
-                        {x: 8, y: 29.9},
-                        {x: 9, y: 44.0},
-                        {x: 10, y: 44.2},
-                        {x: 11, y: 35.0},
-                        {x: 12, y: 32.9}
-                    ]
+                    toolTipContent: "Level of {name} Measured: {y}",
+                    dataPoints: this.state.pm10
                 },
                 {
-                    type: "line",
-                    toolTipContent: "Level of {name} Produced during M{x}: {y}",
+                    type:"spline",
+                    xValueType: "dateTime",
+                    name: "PM2.5",
+                    showInLegend: true,
+                    toolTipContent: "Level of {name} Measured: {y}",
+                    dataPoints: this.state.pm25
+                },
+                {
+                    type:"spline",
+                    xValueType: "dateTime",
                     name: "O3",
                     showInLegend: true,
-                    dataPoints: [
-                        {x: 1, y: 18.6},
-                        {x: 2, y: 26.9},
-                        {x: 3, y: 24.6},
-                        {x: 4, y: 30.5},
-                        {x: 5, y: 33.8},
-                        {x: 6, y: 37.2},
-                        {x: 7, y: 39.8},
-                        {x: 8, y: 40.3},
-                        {x: 9, y: 51.3},
-                        {x: 10, y: 53.3},
-                        {x: 11, y: 31.5},
-                        {x: 12, y: 28.9}
-                    ]
+                    toolTipContent: "Level of {name} Measured: {y}",
+                    dataPoints: this.state.o3
                 },
                 {
-                    type: "line",
-                    toolTipContent: "Level of {name} Produced during M{x}: {y}",
-                    name: "NO2",
-                    showInLegend: true,
-                    dataPoints: [
-                        {x: 1, y: 24.0},
-                        {x: 2, y: 20.9},
-                        {x: 3, y: 10.3},
-                        {x: 4, y: 10.2},
-                        {x: 5, y: 8.7},
-                        {x: 6, y: 7.9},
-                        {x: 7, y: 9.4},
-                        {x: 8, y: 11.8},
-                        {x: 9, y: 18.6},
-                        {x: 10, y: 20.8},
-                        {x: 11, y: 22.0},
-                        {x: 12, y: 12.6}
-                    ]
-                },
-                {
-                    type: "line",
-                    toolTipContent: "Level of {name} Produced during M{x}: {y}",
+                    type:"spline",
+                    xValueType: "dateTime",
                     name: "SO2",
                     showInLegend: true,
-                    dataPoints: [
-                        {x: 1, y: 1},
-                        {x: 2, y: 1},
-                        {x: 3, y: 1},
-                        {x: 4, y: 1.1},
-                        {x: 5, y: 1.1},
-                        {x: 6, y: 1},
-                        {x: 7, y: 1},
-                        {x: 8, y: 1},
-                        {x: 9, y: 1},
-                        {x: 10, y: 1},
-                        {x: 11, y: 1},
-                        {x: 12, y: 1}
-                    ]
+                    toolTipContent: "Level of {name} Measured: {y}",
+                    dataPoints: this.state.so2
                 },
                 {
-                    type: "line",
-                    toolTipContent: "Level of {name} Produced during M{x}: {y}",
+                    type:"spline",
+                    xValueType: "dateTime",
+                    name: "NO2",
+                    showInLegend: true,
+                    toolTipContent: "Level of {name} Measured: {y}",
+                    dataPoints: this.state.no2
+                },
+                {
+                    type:"spline",
+                    xValueType: "dateTime",
                     name: "CO",
                     showInLegend: true,
-                    dataPoints: [
-                        {x: 1, y: 5.9},
-                        {x: 2, y: 4.8},
-                        {x: 3, y: 2.5},
-                        {x: 4, y: 2.5},
-                        {x: 5, y: 2},
-                        {x: 6, y: 1.57},
-                        {x: 7, y: 2.3},
-                        {x: 8, y: 3.1},
-                        {x: 9, y: 6.2},
-                        {x: 10, y: 5.5},
-                        {x: 11, y: 5.8},
-                        {x: 12, y: 5.2}
-                    ]
+                    toolTipContent: "Level of {name} Measured: {y}",
+                    dataPoints: this.state.co
                 }
-
-
-
             ]
-
-            
         }
 
         return(
