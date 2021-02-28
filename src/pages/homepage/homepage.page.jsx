@@ -8,6 +8,8 @@ import "./homepage.style.scss";
 import AirQualityLineChart from "../../components/graphs/airqualitylinechart.component.jsx";
 import EmissionsLinechart from "../../components/graphs/emissionlinechart.component.jsx";
 import Historical2020 from "../../components/graphs/historical2020.component.jsx";
+import Articles from "../../components/articles/articles.component.jsx";
+import LiveAirQuality from "../../components/graphs/liveairquality.component.jsx";
 
 
 class HomePage extends React.Component {
@@ -53,6 +55,10 @@ class HomePage extends React.Component {
           </div>
         </div>
         <div class='graph-container dashboard'>
+          <LiveAirQuality/>
+          <br/>
+          <Historical2020/>
+          <br/>
           <PieChart title="Greenhouse Gas Emissions By Sectors (EPA)" dataPoints={
             [
               { y: 22, label: "Industry" },
@@ -76,11 +82,9 @@ class HomePage extends React.Component {
           <AirQualityLineChart/>
           <br/>
           <EmissionsLinechart/>
-          <br/>
-          <Historical2020/>
         </div>
         <div class='article-container dashboard'>
-          Articles go here
+          <Articles/>
         </div>
        
       </div>
