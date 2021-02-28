@@ -7,9 +7,9 @@ class Historical2020 extends Component{
 
     constructor(props){
         super(props);
+        this.url = "https://api.weatherbit.io/v2.0/history/airquality?city=Los%20Angeles&country=United%20States&state=CA&key=";
+        this.key = 'fcdc42ccf3e84edbb3f31b586099d417';
         this.state = {
-        historicalUrl: "https://api.weatherbit.io/v2.0/history/airquality?city=Los%20Angeles&country=United%20States&state=CA&key=",
-        key: "fcdc42ccf3e84edbb3f31b586099d417",
         pm10: [],
         pm25: [],
         o3: [],
@@ -21,7 +21,7 @@ class Historical2020 extends Component{
     }
 
     retrieveData(){
-        fetch(this.state.historicalUrl + this.state.key)
+        fetch(this.url + this.key)
             .then((response) => response.json())
             .then(data => {
                 let newPM10 = [];
@@ -52,8 +52,17 @@ class Historical2020 extends Component{
         
     }
 
-    componentWillMount(){
+    componentDidMount(){
+        console.log("Historical mounted...")
         this.retrieveData();
+        this.interval = setInterval(() => {
+            this.retrieveData();
+            console.log("Refreshing historical data...");
+        }, 1000*60*60);
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.interval);
     }
     
     render(){
@@ -62,7 +71,7 @@ class Historical2020 extends Component{
             exportEnabled: true,
             theme: "light2",
             title: {
-                text: "Real-Time Historical Air Quality Data in the Past 3 Days (WeatherBit)"
+                text: "Air Quality Measured in the Past 3 Days in Los Angeles (WeatherBit)"
             },
             axisX:{
                 title: "Time",
