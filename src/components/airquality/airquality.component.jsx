@@ -8,7 +8,7 @@ class AirQuality extends React.Component {
     this.ForecastUrl = "https://api.weatherbit.io/v2.0/forecast/daily?postal_code=";
     //this.AqiUrl = "https://api.weatherbit.io/v2.0/current/airquality?postal_code=";
     this.AqiUrl ="https://api.weatherbit.io/v2.0/current?postal_code=";
-    this.key = "fcdc42ccf3e84edbb3f31b586099d417";
+    this.key = process.env.REACT_APP_WEATHERBIT_KEY;
     this.state = {
       postalCode: "90012",
       cityName: null,

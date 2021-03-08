@@ -54,7 +54,21 @@ class HomePage extends React.Component {
             <Map id={this.state.id} />
           </div>
         </div>
-        <div class='graph-container dashboard'>
+        <div className='graph-container dashboard'>
+
+          <div className='card'>
+            <div className='card-body'>
+              <h5 className='card-title'>Did You Know?</h5>
+              <div className='card-text'>
+                <ul>
+                  <li>6% of global deaths are attributed to air pollution</li>
+                  <li>Outdoor air pollution is one of the leading factors for premature deaths and accounts for 3.4 million deaths each year</li>
+                  <li>95% of the global population is exposed to mean concentrations of particulate matter that exceed the recommended limit</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <br/>
           <LiveAirQuality/>
           <br/>
           <Historical2020/>
@@ -78,14 +92,24 @@ class HomePage extends React.Component {
               { y: 3, label: "Acute Lower Respiratory Infections in Children"}
             ]
           }/>
+          <PieChart title="Deaths Caused by Indoor Air Pollution (WHO)" dataPoints={
+            [
+              { y: 27, label: "Pneumonia"},
+              { y: 18, label: "Stroke"},
+              { y: 27, label: "Ischaemic Heart Disease"},
+              { y: 20, label: "Chronic Obstructive Pulmonary Disease"},
+              { y: 8, label: "Lung Cancer"}
+            ]
+          }/>
           <br/>
           <AirQualityLineChart/>
           <br/>
           <EmissionsLinechart/>
         </div>
-        <div class='article-container dashboard'>
+        <div className='article-container dashboard'>
           <Articles/>
         </div>
+       
        
       </div>
     );
