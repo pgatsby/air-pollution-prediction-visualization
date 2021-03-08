@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import CanvasJSReact from './canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
+require('dotenv').config()
+
 export default class LiveAirQuality extends Component{
 
     constructor(props){
         super(props);
         this.url = "https://api.weatherbit.io/v2.0/current/airquality?city=Los%20Angeles&country=US&key=";
-        this.key = "fcdc42ccf3e84edbb3f31b586099d417"
+        this.key = process.env.REACT_APP_WEATHERBIT_KEY;
         this.state={
             pm25:0,
             pm10:0,
@@ -51,7 +53,7 @@ export default class LiveAirQuality extends Component{
     render(){
         const options = {
             title: {
-                text:"Current Air Quality Measured in Los Angeles"
+                text:"Current Air Quality Measured in Los Angeles (WeatherBit)"
             },
             data: [
                 {
