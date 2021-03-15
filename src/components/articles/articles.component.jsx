@@ -17,7 +17,7 @@ export default class Articles extends Component {
     }
 
     retrieveData(){
-        fetch("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/search/NewsSearchAPI?q=air%20pollution&pageNumber=1&pageSize=7&autoCorrect=true&withThumbnails=true&fromPublishedDate=null&toPublishedDate=null", 
+        fetch("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/search/NewsSearchAPI?q=air%20pollution&pageNumber=1&pageSize=8&autoCorrect=true&withThumbnails=true&fromPublishedDate=null&toPublishedDate=null", 
         {
             "method": "GET",
             "headers": {
