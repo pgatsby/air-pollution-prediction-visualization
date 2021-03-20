@@ -10,7 +10,7 @@ export default class Articles extends Component {
 
     constructor(props){
         super(props);
-        this.key = process.env.REACT_APP_RAPIDAPI_KEY
+        this.key = '1002ab6d1amsh969613d6623a143p13b559jsn0395c6b6fa85'
         this.state = {
             articles: []
         }

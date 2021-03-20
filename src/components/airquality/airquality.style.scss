@@ -33,3 +33,36 @@
     width: 100px;
     height: auto;
 }
+
+.table-header{
+    text-align: center;
+    font-weight: bold;
+}
+
+.above{
+    color: white
+}
+
+.good{
+    background-color: lightgreen;
+}
+
+.moderate{
+    background-color: yellow;
+}
+
+.usg{
+    background-color: orange;
+}
+
+.unhealthy{
+    background-color: red;
+}
+
+.vunhealthy{
+    background-color: purple;
+}
+
+.hazard{
+    background-color: maroon;
+}
