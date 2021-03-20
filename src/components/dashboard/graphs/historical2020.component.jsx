@@ -8,7 +8,7 @@ class Historical2020 extends Component{
     constructor(props){
         super(props);
         this.url = "https://api.weatherbit.io/v2.0/history/airquality?city=Los%20Angeles&country=United%20States&state=CA&key=";
-        this.key = process.env.REACT_APP_WEATHERBIT_KEY;
+        this.key = '44fff5c2698043ac8e8946d23fcf6197';
         this.state = {
         pm10: [],
         pm25: [],

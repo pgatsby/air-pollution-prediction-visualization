@@ -9,7 +9,7 @@ export default class LiveAirQuality extends Component{
     constructor(props){
         super(props);
         this.url = "https://api.weatherbit.io/v2.0/current/airquality?city=Los%20Angeles&country=US&key=";
-        this.key = process.env.REACT_APP_WEATHERBIT_KEY;
+        this.key = '44fff5c2698043ac8e8946d23fcf6197';
         this.state={
             pm25:0,
             pm10:0,
