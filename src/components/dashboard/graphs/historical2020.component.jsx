@@ -7,8 +7,10 @@ class Historical2020 extends Component{
 
     constructor(props){
         super(props);
-        this.url = "https://api.weatherbit.io/v2.0/history/airquality?city=Los%20Angeles&country=United%20States&state=CA&key=";
-        this.key = '44fff5c2698043ac8e8946d23fcf6197';
+        this.currentDate = new Date();
+        this.prevDate = (new Date()).setDate(this.currentDate.getDate()-3);
+        this.url = 'http://api.openweathermap.org/data/2.5/air_pollution/history?lat=34.0522&lon=-118.2437&start=' + Math.floor(this.prevDate/1000) + '&end=' + Math.floor(this.currentDate.getTime()/1000) + '&appid=';
+        this.key = '6e53e43c793da4d204db25502e48c33e';
         this.state = {
         pm10: [],
         pm25: [],
@@ -30,13 +32,15 @@ class Historical2020 extends Component{
                 let newSO2 = [];
                 let newNO2 = [];
                 let newCO = [];
-                data.data.forEach(e => {
-                    newPM10.push({x: Date.parse(e.timestamp_local), y: e.pm10});
-                    newPM25.push({x: Date.parse(e.timestamp_local), y: e.pm25});
-                    newO3.push({x: Date.parse(e.timestamp_local), y: e.o3});
-                    newSO2.push({x: Date.parse(e.timestamp_local), y: e.so2});
-                    newNO2.push({x: Date.parse(e.timestamp_local), y: e.no2});
-                    newCO.push({x: Date.parse(e.timestamp_local), y: e.co});
+                console.log(data)
+                data.list.forEach(e => {
+                   
+                    newPM10.push({x: e.dt*1000, y: e.components.pm10});
+                    newPM25.push({x: e.dt*1000, y: e.components.pm2_5});
+                    newO3.push({x: e.dt*1000, y: e.components.o3});
+                    newSO2.push({x: e.dt*1000, y: e.components.so2});
+                    newNO2.push({x: e.dt*1000, y: e.components.no2});
+                    newCO.push({x: e.dt*1000, y: e.components.co});
                 });
 
                 this.setState({
@@ -47,17 +51,22 @@ class Historical2020 extends Component{
                     no2: newNO2,
                     co: newCO
                 });
+               
+
+                
             });
 
         
     }
 
     componentDidMount(){
-        console.log("Historical mounted...")
         this.retrieveData();
         this.interval = setInterval(() => {
+            this.setState({
+                currentDate:new Date(),
+                prevDate:(new Date()).setDate(this.currentDate.getDate()-3)
+            })
             this.retrieveData();
-            console.log("Refreshing historical data...");
         }, 1000*60*60);
     }
 
@@ -75,7 +84,7 @@ class Historical2020 extends Component{
             },
             axisX:{
                 title: "Time",
-                interval: 6,
+                interval: 8,
                 intervalType: "hour",
                 valueFormatString: "MMM DD hh TT K",
                 labelAngel: -20,
@@ -96,7 +105,7 @@ class Historical2020 extends Component{
             toolTip:{
                 shared: true
             },
-            height: 600,
+            height: 800,
             
             data: [
                 {

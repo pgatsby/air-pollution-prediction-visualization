@@ -11,10 +11,10 @@ export default class Dashboard extends Component {
     render(){
         return(
             <div>
-                 {/* <LiveAirQuality/>
-          <br/>
-          <Historical2020/>
-          <br/> */}
+            <LiveAirQuality/>
+            <br/>
+            <Historical2020/>
+            <br/>
           <PieChart title="Greenhouse Gas Emissions By Sectors (EPA)" dataPoints={
             [
               { y: 22, label: "Industry" },

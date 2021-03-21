@@ -29,7 +29,7 @@ class AirQualityLineChart extends Component{
                 dockInsidePlotArea: false
             },
             toolTip:{
-                shared: true
+                shared: true,
             },
             data: [
                 {
