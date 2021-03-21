@@ -8,8 +8,8 @@ export default class LiveAirQuality extends Component{
 
     constructor(props){
         super(props);
-        this.url = "https://api.weatherbit.io/v2.0/current/airquality?city=Los%20Angeles&country=US&key=";
-        this.key = '44fff5c2698043ac8e8946d23fcf6197';
+        this.url = "http://api.openweathermap.org/data/2.5/air_pollution?lat=34.0522&lon=-118.2437&appid=";
+        this.key = '6e53e43c793da4d204db25502e48c33e';
         this.state={
             pm25:0,
             pm10:0,
@@ -26,12 +26,12 @@ export default class LiveAirQuality extends Component{
             .then(data => {
                 console.log(data);
                 this.setState({
-                    pm25: data.data[0].pm25,
-                    pm10: data.data[0].pm10,
-                    o3: data.data[0].o3,
-                    so2: data.data[0].so2,
-                    no2: data.data[0].no2,
-                    co: data.data[0].co
+                    pm25: data.list[0].components.pm2_5,
+                    pm10: data.list[0].components.pm10,
+                    o3: data.list[0].components.o3,
+                    so2: data.list[0].components.so2,
+                    no2: data.list[0].components.no2,
+                    co: data.list[0].components.co
                 })
             })
 
@@ -53,7 +53,7 @@ export default class LiveAirQuality extends Component{
     render(){
         const options = {
             title: {
-                text:"Current Air Quality Measured in Los Angeles (WeatherBit)"
+                text:"Current Air Quality Measured in Los Angeles (OpenWeatherMap)"
             },
             data: [
                 {
