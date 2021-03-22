@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 
-import LiveAirQuality from "./graphs/liveairquality.component.jsx";
+
 import AirQualityLineChart from "./graphs/airqualitylinechart.component.jsx";
 import EmissionsLinechart from "./graphs/emissionlinechart.component.jsx";
-import Historical2020 from "./graphs/historical2020.component.jsx";
+import OpenAQHistorical from './graphs/openaq-historical.component.jsx';
+import OpenAQLive from './graphs/openaq-live.component.jsx';
+import OpenWeatherMapHistorical from './graphs/openweathermap-historical.component.jsx';
+import OpenWeatherMapLive from './graphs/openweathermap-live.component.jsx';
 import PieChart from "./graphs/piechart.component.jsx";
 
 export default class Dashboard extends Component {
@@ -11,9 +14,13 @@ export default class Dashboard extends Component {
     render(){
         return(
             <div>
-            <LiveAirQuality/>
+            <OpenWeatherMapLive/>
             <br/>
-            <Historical2020/>
+            <OpenAQLive/>
+            <br/>
+            <OpenWeatherMapHistorical/>
+            <br/>
+            <OpenAQHistorical/>
             <br/>
           <PieChart title="Greenhouse Gas Emissions By Sectors (EPA)" dataPoints={
             [
@@ -34,6 +41,7 @@ export default class Dashboard extends Component {
               { y: 3, label: "Acute Lower Respiratory Infections in Children"}
             ]
           }/>
+          <br/>
           <PieChart title="Deaths Caused by Indoor Air Pollution (WHO)" dataPoints={
             [
               { y: 27, label: "Pneumonia"},
@@ -47,7 +55,7 @@ export default class Dashboard extends Component {
           <AirQualityLineChart/>
           <br/>
           <EmissionsLinechart/>
-            </div>
+          </div>
         );
     }
 }

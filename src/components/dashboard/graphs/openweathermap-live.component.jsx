@@ -4,11 +4,11 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 require('dotenv').config()
 
-export default class LiveAirQuality extends Component{
+export default class OpenWeatherMapLive extends Component{
 
     constructor(props){
         super(props);
-        this.url = "http://api.openweathermap.org/data/2.5/air_pollution?lat=34.0522&lon=-118.2437&appid=";
+        this.url = "https://api.openweathermap.org/data/2.5/air_pollution?lat=34.0522&lon=-118.2437&appid=";
         this.key = '6e53e43c793da4d204db25502e48c33e';
         this.state={
             pm25:0,
@@ -53,11 +53,13 @@ export default class LiveAirQuality extends Component{
     render(){
         const options = {
             title: {
-                text:"Current Air Quality Measured in Los Angeles (OpenWeatherMap)"
+                text:"Current Air Quality Measured in General Los Angeles (OpenWeatherMap)"
             },
             data: [
                 {
                     type: "column",
+                    yValueFormatString: "#,##0.00 µg/m3",
+                    indexLabel: "{y}",
                     dataPoints: [
                         {label: "PM2.5", y: this.state.pm25},
                         {label: "PM10", y: this.state.pm10},
