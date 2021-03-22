@@ -3,13 +3,13 @@ import React, {Component} from 'react';
 import CanvasJSReact from './canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-class Historical2020 extends Component{
+export default class OpenWeatherMapHistorical extends Component{
 
     constructor(props){
         super(props);
         this.currentDate = new Date();
         this.prevDate = (new Date()).setDate(this.currentDate.getDate()-3);
-        this.url = 'http://api.openweathermap.org/data/2.5/air_pollution/history?lat=34.0522&lon=-118.2437&start=' + Math.floor(this.prevDate/1000) + '&end=' + Math.floor(this.currentDate.getTime()/1000) + '&appid=';
+        // this.url = "";
         this.key = '6e53e43c793da4d204db25502e48c33e';
         this.state = {
         pm10: [],
@@ -23,7 +23,8 @@ class Historical2020 extends Component{
     }
 
     retrieveData(){
-        fetch(this.url + this.key)
+        let url = 'https://api.openweathermap.org/data/2.5/air_pollution/history?lat=34.0522&lon=-118.2437&start=' + Math.floor(this.prevDate/1000) + '&end=' + Math.floor(this.currentDate.getTime()/1000) + '&appid='
+        fetch(url + this.key)
             .then((response) => response.json())
             .then(data => {
                 let newPM10 = [];
@@ -62,10 +63,8 @@ class Historical2020 extends Component{
     componentDidMount(){
         this.retrieveData();
         this.interval = setInterval(() => {
-            this.setState({
-                currentDate:new Date(),
-                prevDate:(new Date()).setDate(this.currentDate.getDate()-3)
-            })
+            this.currentDate = new Date();
+            this.prevDate = (new Date()).setDate(this.currentDate.getDate()-3)
             this.retrieveData();
         }, 1000*60*60);
     }
@@ -80,13 +79,13 @@ class Historical2020 extends Component{
             exportEnabled: true,
             theme: "light2",
             title: {
-                text: "Air Quality Measured in the Past 3 Days in Los Angeles (WeatherBit)"
+                text: "Air Quality Measured in the Past 3 Days in General Los Angeles (OpenWeatherMap)"
             },
             axisX:{
                 title: "Time",
                 interval: 8,
                 intervalType: "hour",
-                valueFormatString: "MMM DD hh TT K",
+                valueFormatString: "MMM DD hh:mm TT K",
                 labelAngel: -20,
                 labelFontSize: 16,
             },
@@ -113,7 +112,7 @@ class Historical2020 extends Component{
                     xValueType: "dateTime",
                     name: "PM10",
                     showInLegend: true,
-                    toolTipContent: "Level of {name} Measured: {y}",
+                    toolTipContent: "Level of {name} Measured: {y} µg/m3",
                     dataPoints: this.state.pm10
                 },
                 {
@@ -121,7 +120,7 @@ class Historical2020 extends Component{
                     xValueType: "dateTime",
                     name: "PM2.5",
                     showInLegend: true,
-                    toolTipContent: "Level of {name} Measured: {y}",
+                    toolTipContent: "Level of {name} Measured: {y} µg/m3",
                     dataPoints: this.state.pm25
                 },
                 {
@@ -129,7 +128,7 @@ class Historical2020 extends Component{
                     xValueType: "dateTime",
                     name: "O3",
                     showInLegend: true,
-                    toolTipContent: "Level of {name} Measured: {y}",
+                    toolTipContent: "Level of {name} Measured: {y} µg/m3",
                     dataPoints: this.state.o3
                 },
                 {
@@ -137,7 +136,7 @@ class Historical2020 extends Component{
                     xValueType: "dateTime",
                     name: "SO2",
                     showInLegend: true,
-                    toolTipContent: "Level of {name} Measured: {y}",
+                    toolTipContent: "Level of {name} Measured: {y} µg/m3",
                     dataPoints: this.state.so2
                 },
                 {
@@ -145,7 +144,7 @@ class Historical2020 extends Component{
                     xValueType: "dateTime",
                     name: "NO2",
                     showInLegend: true,
-                    toolTipContent: "Level of {name} Measured: {y}",
+                    toolTipContent: "Level of {name} Measured: {y} µg/m3",
                     dataPoints: this.state.no2
                 },
                 {
@@ -153,7 +152,7 @@ class Historical2020 extends Component{
                     xValueType: "dateTime",
                     name: "CO",
                     showInLegend: true,
-                    toolTipContent: "Level of {name} Measured: {y}",
+                    toolTipContent: "Level of {name} Measured: {y} µg/m3",
                     dataPoints: this.state.co
                 }
             ]
@@ -171,4 +170,3 @@ class Historical2020 extends Component{
 
 }
 
-export default Historical2020;
