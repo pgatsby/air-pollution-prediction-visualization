@@ -1,8 +1,10 @@
 import React from "react";
-
+import { connect } from "react-redux";
+import { setAirQuality } from "../../redux/actions/spinner.actions";
 import "./airquality.style.scss";
 
 class AirQuality extends React.Component {
+  didAirQualityLoad = false;
   constructor(props) {
     super(props);
     this.ForecastUrl =
@@ -10,7 +12,7 @@ class AirQuality extends React.Component {
     //this.AqiUrl = "https://api.weatherbit.io/v2.0/current/airquality?postal_code=";
     this.AqiUrl = "https://api.weatherbit.io/v2.0/current?postal_code=";
     // this.key = process.env.REACT_APP_WEATHERBIT_KEY;
-    this.key = '44fff5c2698043ac8e8946d23fcf6197';
+    this.key = "44fff5c2698043ac8e8946d23fcf6197";
     this.state = {
       postalCode: "90012",
       cityName: null,
@@ -26,6 +28,7 @@ class AirQuality extends React.Component {
   }
 
   retrieveData(postalCode) {
+    const { setAirQuality } = this.props;
     fetch(
       this.ForecastUrl +
         this.state.postalCode +
@@ -80,21 +83,25 @@ class AirQuality extends React.Component {
     fetch(this.AqiUrl + this.state.postalCode + "&key=" + this.key)
       .then((response) => response.json())
       .then((data) => {
+        this.didAirQualityLoad = true;
         this.setState({
           cityName: data.data[0].city_name,
           stateCode: data.data[0].state_code,
           aqiCode: data.data[0].aqi,
         });
       });
+
+    setTimeout(() => {
+      setAirQuality(this.didAirQualityLoad);
+    }, 5000);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.retrieveData();
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.postalCode);
     try {
       this.retrieveData(this.state.postalCode);
     } catch (e) {
@@ -105,7 +112,6 @@ class AirQuality extends React.Component {
 
   handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(value);
     this.setState({
       [name]: value,
     });
@@ -228,58 +234,82 @@ class AirQuality extends React.Component {
             </div>
           </div>
         </div>
-        
+
         <div className="row pt-4 pb-4">
-          <table className='table border'>
-            <thead className='table-header'>
+          <table className="table border">
+            <thead className="table-header">
               <tr>
-                <th colSpan='3'>AQI Basics (AirNow)</th>
+                <th colSpan="3">AQI Basics (AirNow)</th>
               </tr>
             </thead>
-            <thead className='table-header border'>
+            <thead className="table-header border">
               <tr>
-                <th className='border'>Levels of Concern</th>
-                <th className='border'>Values of Index</th>
-                <th className='border'>Description of Air Quality</th>
+                <th className="border">Levels of Concern</th>
+                <th className="border">Values of Index</th>
+                <th className="border">Description of Air Quality</th>
               </tr>
             </thead>
             <tbody>
-              <tr className='good'>
-                <td className='border'>Good</td>
-                <td className='border'>0 to 50</td>
-                <td className='border'>Air quality is satisfactory, and air pollution poses little or no risk.</td>
+              <tr className="good">
+                <td className="border">Good</td>
+                <td className="border">0 to 50</td>
+                <td className="border">
+                  Air quality is satisfactory, and air pollution poses little or
+                  no risk.
+                </td>
               </tr>
-              <tr className='moderate'>
-                <td className='border'>Moderate</td>
-                <td className='border'>51 to 100</td>
-                <td className='border'>Air quality is acceptable. However, there may be a risk for some people, particularly those who are unusually sensitive to air pollution</td>
+              <tr className="moderate">
+                <td className="border">Moderate</td>
+                <td className="border">51 to 100</td>
+                <td className="border">
+                  Air quality is acceptable. However, there may be a risk for
+                  some people, particularly those who are unusually sensitive to
+                  air pollution
+                </td>
               </tr>
-              <tr className='above usg'>
-                <td className='border'>Unhealthy for Sensitive Groups</td>
-                <td className='border'>101 to 150</td>
-                <td className='border'>Members of Sensitive Groups may experience health effects. The general public is less likely to be affected.</td>
+              <tr className="above usg">
+                <td className="border">Unhealthy for Sensitive Groups</td>
+                <td className="border">101 to 150</td>
+                <td className="border">
+                  Members of Sensitive Groups may experience health effects. The
+                  general public is less likely to be affected.
+                </td>
               </tr>
-              <tr className='above unhealthy'>
-                <td className='border'>Unhealthy</td>
-                <td className='border'>151 to 200</td>
-                <td className='border'>Some members of the general public may experience health effects; members of sensitive groups may experience more serious health effects.</td>
+              <tr className="above unhealthy">
+                <td className="border">Unhealthy</td>
+                <td className="border">151 to 200</td>
+                <td className="border">
+                  Some members of the general public may experience health
+                  effects; members of sensitive groups may experience more
+                  serious health effects.
+                </td>
               </tr>
-              <tr className='above vunhealthy'>
-                <td className='border'>Very Unhealthy</td>
-                <td className='border'>201 to 300</td>
-                <td className='border'>Health alert: The risk of health effects is increased for everyone.</td>
+              <tr className="above vunhealthy">
+                <td className="border">Very Unhealthy</td>
+                <td className="border">201 to 300</td>
+                <td className="border">
+                  Health alert: The risk of health effects is increased for
+                  everyone.
+                </td>
               </tr>
-              <tr className='above hazard'>
-                <td className='border'>Hazardous</td>
-                <td className='border'>301 and higher</td>
-                <td className='border'>Health warning of emergency conditions: everyone is likely to be affected.</td>
+              <tr className="above hazard">
+                <td className="border">Hazardous</td>
+                <td className="border">301 and higher</td>
+                <td className="border">
+                  Health warning of emergency conditions: everyone is likely to
+                  be affected.
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
-
       </div>
     );
   }
 }
-export default AirQuality;
+
+const mapDispatchToProps = (dispatch) => ({
+  setAirQuality: (didLoad) => dispatch(setAirQuality(didLoad)),
+});
+
+export default connect(null, mapDispatchToProps)(AirQuality);

@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux"
 import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 
@@ -20,4 +21,7 @@ class App extends React.Component {
     );
   }
 }
+
+
+
 export default App;
