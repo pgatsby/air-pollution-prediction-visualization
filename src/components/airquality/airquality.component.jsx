@@ -93,7 +93,7 @@ class AirQuality extends React.Component {
 
     setTimeout(() => {
       setAirQuality(this.didAirQualityLoad);
-    }, 5000);
+    }, 7000);
   }
 
   componentDidMount() {
