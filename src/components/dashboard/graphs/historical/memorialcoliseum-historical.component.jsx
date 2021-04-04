@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-import CanvasJSReact from './canvasjs.react';
+import CanvasJSReact from '../canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-export default class OpenAQHistorical extends Component{
+export default class MemorialColiseumHistorical extends Component{
 
     constructor(props){
         super(props);
@@ -18,7 +18,7 @@ export default class OpenAQHistorical extends Component{
     }
 
     retrieveData(){
-        let url = 'https://docs.openaq.org/v2/measurements?date_from=' + this.prevDate.toISOString() + '&date_to=' + this.currentDate.toISOString() +'&limit=400&page=1&offset=0&sort=desc&unit=%C2%B5g%2Fm%C2%B3&radius=1000&location_id=70436&order_by=datetime';
+        let url = 'https://docs.openaq.org/v2/measurements?date_from=' + this.prevDate.toISOString() + '&date_to=' + this.currentDate.toISOString() +'&limit=400&page=1&offset=0&sort=desc&unit=%C2%B5g%2Fm%C2%B3&radius=1000&location_id=219448&order_by=datetime';
         fetch(url)
             .then((response) => response.json())
             .then(data => {
@@ -72,11 +72,11 @@ export default class OpenAQHistorical extends Component{
             exportEnabled: true,
             theme: "light2",
             title: {
-                text: "Air Quality Trends in Los Angeles (3rd and Broadway) (OpenAQ)"
+                text: "Air Quality Trends in Los Angeles (MemorialColiseum) (OpenAQ)"
             },
             axisX:{
                 title: "Time",
-                interval: 60,
+                interval: 30,
                 intervalType: "minute",
                 valueFormatString: "MMM DD hh:mm TT K",
                 labelAngel: -20,
