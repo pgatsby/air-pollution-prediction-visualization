@@ -1,56 +1,48 @@
 import React, {Component} from 'react';
 
-import CanvasJSReact from './canvasjs.react';
+import CanvasJSReact from '../canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-export default class OpenWeatherMapHistorical extends Component{
+export default class BroadwayHistorical extends Component{
 
     constructor(props){
         super(props);
         this.currentDate = new Date();
-        this.prevDate = (new Date()).setDate(this.currentDate.getDate()-3);
-        // this.url = "";
-        this.key = '6e53e43c793da4d204db25502e48c33e';
+        this.prevTime = (new Date()).setDate(this.currentDate.getDate()-3);
+        this.prevDate = new Date(this.prevTime);
         this.state = {
         pm10: [],
         pm25: [],
-        o3: [],
-        so2: [],
-        no2: [],
-        co: [],
-        
+        pm1: []
         }
     }
 
     retrieveData(){
-        let url = 'https://api.openweathermap.org/data/2.5/air_pollution/history?lat=34.0522&lon=-118.2437&start=' + Math.floor(this.prevDate/1000) + '&end=' + Math.floor(this.currentDate.getTime()/1000) + '&appid='
-        fetch(url + this.key)
+        let url = 'https://docs.openaq.org/v2/measurements?date_from=' + this.prevDate.toISOString() + '&date_to=' + this.currentDate.toISOString() +'&limit=400&page=1&offset=0&sort=desc&unit=%C2%B5g%2Fm%C2%B3&radius=1000&location_id=70436&order_by=datetime';
+        fetch(url)
             .then((response) => response.json())
             .then(data => {
+                let newData = data.results.reverse();
                 let newPM10 = [];
                 let newPM25 = [];
-                let newO3 = [];
-                let newSO2 = [];
-                let newNO2 = [];
-                let newCO = [];
-                console.log(data)
-                data.list.forEach(e => {
+                let newPM1 = [];
+                newData.forEach(e => {
                    
-                    newPM10.push({x: e.dt*1000, y: e.components.pm10});
-                    newPM25.push({x: e.dt*1000, y: e.components.pm2_5});
-                    newO3.push({x: e.dt*1000, y: e.components.o3});
-                    newSO2.push({x: e.dt*1000, y: e.components.so2});
-                    newNO2.push({x: e.dt*1000, y: e.components.no2});
-                    newCO.push({x: e.dt*1000, y: e.components.co});
+                    if(e.parameter == "pm10"){
+                        newPM10.push({x: Date.parse(e.date.local), y: e.value});
+                    }else if(e.parameter == "pm25"){
+                        newPM25.push({x: Date.parse(e.date.local), y: e.value});
+                    }else{
+                       newPM1.push({x: Date.parse(e.date.local), y: e.value});
+                    }
+
+                    
                 });
 
                 this.setState({
                     pm10: newPM10,
                     pm25: newPM25,
-                    o3: newO3,
-                    so2: newSO2,
-                    no2: newNO2,
-                    co: newCO
+                    pm1: newPM1
                 });
                
 
@@ -64,7 +56,8 @@ export default class OpenWeatherMapHistorical extends Component{
         this.retrieveData();
         this.interval = setInterval(() => {
             this.currentDate = new Date();
-            this.prevDate = (new Date()).setDate(this.currentDate.getDate()-3)
+            this.prevTime = (new Date()).setDate(this.currentDate.getDate()-3);
+            this.prevDate = new Date(this.prevTime);
             this.retrieveData();
         }, 1000*60*60);
     }
@@ -79,12 +72,12 @@ export default class OpenWeatherMapHistorical extends Component{
             exportEnabled: true,
             theme: "light2",
             title: {
-                text: "Air Quality Measured in the Past 3 Days in General Los Angeles (OpenWeatherMap)"
+                text: "Air Quality Trends in Los Angeles (3rd and Broadway) (OpenAQ)"
             },
             axisX:{
                 title: "Time",
-                interval: 8,
-                intervalType: "hour",
+                interval: 30,
+                intervalType: "minute",
                 valueFormatString: "MMM DD hh:mm TT K",
                 labelAngel: -20,
                 labelFontSize: 16,
@@ -104,7 +97,7 @@ export default class OpenWeatherMapHistorical extends Component{
             toolTip:{
                 shared: true
             },
-            height: 800,
+            height: 600,
             
             data: [
                 {
@@ -126,35 +119,11 @@ export default class OpenWeatherMapHistorical extends Component{
                 {
                     type:"spline",
                     xValueType: "dateTime",
-                    name: "O3",
+                    name: "PM1",
                     showInLegend: true,
                     toolTipContent: "Level of {name} Measured: {y} µg/m3",
-                    dataPoints: this.state.o3
-                },
-                {
-                    type:"spline",
-                    xValueType: "dateTime",
-                    name: "SO2",
-                    showInLegend: true,
-                    toolTipContent: "Level of {name} Measured: {y} µg/m3",
-                    dataPoints: this.state.so2
-                },
-                {
-                    type:"spline",
-                    xValueType: "dateTime",
-                    name: "NO2",
-                    showInLegend: true,
-                    toolTipContent: "Level of {name} Measured: {y} µg/m3",
-                    dataPoints: this.state.no2
-                },
-                {
-                    type:"spline",
-                    xValueType: "dateTime",
-                    name: "CO",
-                    showInLegend: true,
-                    toolTipContent: "Level of {name} Measured: {y} µg/m3",
-                    dataPoints: this.state.co
-                }
+                    dataPoints: this.state.pm1
+                }, 
             ]
         }
 

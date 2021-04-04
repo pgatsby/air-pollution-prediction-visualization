@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-import CanvasJSReact from './canvasjs.react';
+import CanvasJSReact from '../canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-export default class OpenAQLive extends Component{
+export default class BroadwayLive extends Component{
 
     constructor(props){
         super(props);

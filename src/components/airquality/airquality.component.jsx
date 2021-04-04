@@ -121,14 +121,14 @@ class AirQuality extends React.Component {
     return (
       <div className="air-quality container w-100">
         <div className="row pt-4 pb-4">
-          <div className="col-lg-6 pb-4 d-flex justify-content-center align-items-center">
+          <div className="col-lg-4 pb-4 d-flex justify-content-center align-items-center">
             <h1 id="aq-title">
               {this.state.cityName}
               <br />
               AIR QUALITY
             </h1>
           </div>
-          <div className="col-lg-6 pb-4">
+          <div className="col-lg-8 pb-4">
             <form onSubmit={this.handleSubmit}>
               <label className="form-label">Find Your City!</label>
               <input
