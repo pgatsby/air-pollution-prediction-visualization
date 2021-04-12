@@ -99,8 +99,7 @@ export default class Dashboard extends Component {
                 <br/>
 
                 <div>
-                    <Tabs defaultActiveKey={"Ambient"}>
-                        <Tab eventKey='Ambient' title='Ambient Air Pollution'>
+                    
                             <PieChart title="Deaths Caused by Ambient Air Pollution (WHO)"
                                 dataPoints={
                                     [
@@ -125,8 +124,7 @@ export default class Dashboard extends Component {
                                         }
                                     ]
                                 }/>
-                        </Tab>
-                        <Tab eventKey='Indoor' title='Indoor Air Pollution'>
+                        
                             <PieChart title="Deaths Caused by Indoor Air Pollution (WHO)"
                            
                                 dataPoints={
@@ -152,8 +150,7 @@ export default class Dashboard extends Component {
                                         }
                                     ]
                                 }/>
-                        </Tab>
-                    </Tabs>
+                     
                 </div>
                 <br/>
 

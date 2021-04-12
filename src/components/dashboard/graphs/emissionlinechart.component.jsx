@@ -13,7 +13,7 @@ class EmissionsLinechart extends Component{
             title: {
                 text: "Percent Change in Emissions From 1980 in the US (EPA)"
             },
-            width: 1200,
+            
             axisY:{
                 title: "Percent",
                 suffix: "%",

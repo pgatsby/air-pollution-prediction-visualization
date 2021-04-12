@@ -14,7 +14,7 @@ class PieChart extends Component {
 			title: {
 				text: this.props.title
 			},
-			width: 1200,
+			
 			data: [{
 				type: "pie",
 				startAngle: 75,

@@ -32,7 +32,7 @@ const Navbar = () => (
             About
           </Link> */}
           <Link className="nav-link" to="/faq">
-            Faq
+            FAQs
           </Link>
         </div>
       </div>

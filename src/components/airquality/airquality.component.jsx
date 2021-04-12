@@ -165,9 +165,9 @@ class AirQuality extends React.Component {
                       alt="weather-icon"
                     />
 
-                    <div>Temp: {this.state.weatherTemp[0]}</div>
-                    <div>Min Temp: {this.state.weatherMinTemp[0]}</div>
-                    <div>Max Temp: {this.state.weatherMaxTemp[0]}</div>
+                    <div>Temp: {this.state.weatherTemp[0]}&#8457;</div>
+                    <div>Min Temp: {this.state.weatherMinTemp[0]}&#8457;</div>
+                    <div>Max Temp: {this.state.weatherMaxTemp[0]}&#8457;</div>
                   </div>
                   <div className="col-md holder">
                     <div>
@@ -180,9 +180,9 @@ class AirQuality extends React.Component {
                       }
                       alt="weather-icon"
                     />
-                    <div>Temp:{this.state.weatherTemp[1]}</div>
-                    <div>Min Temp: {this.state.weatherMinTemp[1]}</div>
-                    <div>Max Temp: {this.state.weatherMaxTemp[1]}</div>
+                    <div>Temp:{this.state.weatherTemp[1]}&#8457;</div>
+                    <div>Min Temp: {this.state.weatherMinTemp[1]}&#8457;</div>
+                    <div>Max Temp: {this.state.weatherMaxTemp[1]}&#8457;</div>
                   </div>
                   <div className="col-md holder">
                     <div>
@@ -195,9 +195,9 @@ class AirQuality extends React.Component {
                       }
                       alt="weather-icon"
                     />
-                    <div>Temp:{this.state.weatherTemp[2]}</div>
-                    <div>Min Temp: {this.state.weatherMinTemp[2]}</div>
-                    <div>Max Temp: {this.state.weatherMaxTemp[2]}</div>
+                    <div>Temp:{this.state.weatherTemp[2]}&#8457;</div>
+                    <div>Min Temp: {this.state.weatherMinTemp[2]}&#8457;</div>
+                    <div>Max Temp: {this.state.weatherMaxTemp[2]}&#8457;</div>
                   </div>
                   <div className="col-md holder">
                     <div>
@@ -210,9 +210,9 @@ class AirQuality extends React.Component {
                       }
                       alt="weather-icon"
                     />
-                    <div>Temp:{this.state.weatherTemp[3]}</div>
-                    <div>Min Temp: {this.state.weatherMinTemp[3]}</div>
-                    <div>Max Temp: {this.state.weatherMaxTemp[3]}</div>
+                    <div>Temp:{this.state.weatherTemp[3]}&#8457;</div>
+                    <div>Min Temp: {this.state.weatherMinTemp[3]}&#8457;</div>
+                    <div>Max Temp: {this.state.weatherMaxTemp[3]}&#8457;</div>
                   </div>
                   <div className="col-md holder">
                     <div>
@@ -225,9 +225,9 @@ class AirQuality extends React.Component {
                       }
                       alt="weather-icon"
                     />
-                    <div>Temp:{this.state.weatherTemp[4]}</div>
-                    <div>Min Temp: {this.state.weatherMinTemp[4]}</div>
-                    <div>Max Temp: {this.state.weatherMaxTemp[4]}</div>
+                    <div>Temp:{this.state.weatherTemp[4]}&#8457;</div>
+                    <div>Min Temp: {this.state.weatherMinTemp[4]}&#8457;</div>
+                    <div>Max Temp: {this.state.weatherMaxTemp[4]}&#8457;</div>
                   </div>
                 </div>
               </div>
