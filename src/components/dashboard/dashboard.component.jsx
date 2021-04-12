@@ -11,6 +11,10 @@ import OpenWeatherMapLive from './graphs/live/openweathermap-live.component.jsx'
 import BroadwayLive from './graphs/live/broadway-live.component.jsx';
 import MemorialColiseumLive from './graphs/live/memorialcoliseum-live.component.jsx';
 import PieChart from "./graphs/piechart.component.jsx";
+import LincolnHeightsLive from './graphs/live/lincolnheights-live.component.jsx';
+import LincolnHeightsHistorical from './graphs/historical/lincolnheights-historical.component.jsx';
+import MagnoliaLive from './graphs/live/magnolia-live.component.jsx';
+import MagnoliaHistorical from './graphs/historical/magnolia-historical.component.jsx';
 
 
 export default class Dashboard extends Component {
@@ -43,6 +47,8 @@ export default class Dashboard extends Component {
                         <Tab eventKey='General' title='General Los Angeles'><OpenWeatherMapLive/></Tab>
                         <Tab eventKey='Broadway' title='3rd and Broadway'><BroadwayLive/></Tab>
                         <Tab eventKey='Coliseum' title='Memorial Coliseum'><MemorialColiseumLive/></Tab>
+                        <Tab eventKey='Lincoln' title='Lincoln Heights'><LincolnHeightsLive/></Tab>
+                        <Tab eventKey='Magnolia' title='7th and Magnolia'><MagnoliaLive/></Tab>
                     </Tabs>
                 </div>
 
@@ -61,6 +67,8 @@ export default class Dashboard extends Component {
                         <Tab eventKey='General' title='General Los Angeles'><OpenWeatherMapHistorical/></Tab>
                         <Tab eventKey='Broadway' title='3rd and Broadway'><BroadwayHistorical/></Tab>
                         <Tab eventKey='Coliseum' title='Memorial Coliseum'><MemorialColiseumHistorical/></Tab>
+                        <Tab eventKey='Lincoln' title='Lincoln Heights'><LincolnHeightsHistorical/></Tab>
+                        <Tab eventKey='Magnolia' title='7th and Magnolia'><MagnoliaHistorical/></Tab>
                     </Tabs>
                 </div>
 
