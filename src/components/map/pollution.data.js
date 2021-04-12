@@ -97,6 +97,8 @@ var infrastructureGroupLayer = new GroupLayer({
     powerPlantLayer,
     electricalLayer,
   ],
+  index: 2
+  
 });
 
 var hazardsGroupLayer = new GroupLayer({
@@ -104,6 +106,7 @@ var hazardsGroupLayer = new GroupLayer({
   visible: true,
   visibilityMode: "inherited",
   layers: [oilFieldLayer, oilRefineriesLayer, hazardLayer],
+  index: 1
 });
 
 var transportationGroupLayer = new GroupLayer({
@@ -111,6 +114,7 @@ var transportationGroupLayer = new GroupLayer({
   visible: true,
   visibilityMode: "inherited",
   layers: [busLayer],
+  index: 0
 });
 
 const POLLUTION_DATA = [
@@ -121,9 +125,10 @@ const POLLUTION_DATA = [
   {
     id: 2,
     layers: [
+      transportationGroupLayer,
       infrastructureGroupLayer,
       hazardsGroupLayer,
-      transportationGroupLayer,
+      
     ],
   },
 ];
