@@ -4,6 +4,12 @@
     object-fit: cover;
 }
 
+@media screen and (max-width: 1024px){
+    .articles{
+        display: none;
+    }
+}
+
 // .articles a{
 //     color: black;
 // }
