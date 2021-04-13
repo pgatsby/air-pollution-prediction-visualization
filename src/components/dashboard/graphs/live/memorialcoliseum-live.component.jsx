@@ -49,7 +49,7 @@ export default class MemorialColiseumLive extends Component{
             this.prevTime = (new Date()).setDate(this.currentDate.getDate() - 1);
             this.prevDate = new Date(this.prevTime);
             this.retrieveData()
-        }, 1000*60*60);
+        }, 1000*60);
     }
 
     componentWillUnmount(){
