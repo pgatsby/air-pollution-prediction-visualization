@@ -32,6 +32,7 @@ export default class Dashboard extends Component {
     }
 
     render() {
+
         return (
             <div>
                 <div>
@@ -72,6 +73,7 @@ export default class Dashboard extends Component {
                     </Tabs>
                 </div>
 
+                <br/>
                 <PieChart title="Greenhouse Gas Emissions By Sectors (EPA)"
                     dataPoints={
                         [
@@ -98,72 +100,68 @@ export default class Dashboard extends Component {
                     }/>
                 <br/>
 
-                <div>
-                    
-                            <PieChart title="Deaths Caused by Ambient Air Pollution (WHO)"
-                                dataPoints={
-                                    [
-                                        {
-                                            y: 40,
-                                            label: "Ischemic Heart Disease"
-                                        },
-                                        {
-                                            y: 40,
-                                            label: "Stroke"
-                                        },
-                                        {
-                                            y: 11,
-                                            label: "Chronic Obstructive Pulmonary Disease"
-                                        },
-                                        {
-                                            y: 6,
-                                            label: "Lung Cancer"
-                                        }, {
-                                            y: 3,
-                                            label: "Acute Lower Respiratory Infections in Children"
-                                        }
-                                    ]
-                                }/>
-                        
-                            <PieChart title="Deaths Caused by Indoor Air Pollution (WHO)"
-                           
-                                dataPoints={
-                                    [
-                                        {
-                                            y: 27,
-                                            label: "Pneumonia"
-                                        },
-                                        {
-                                            y: 18,
-                                            label: "Stroke"
-                                        },
-                                        {
-                                            y: 27,
-                                            label: "Ischaemic Heart Disease"
-                                        },
-                                        {
-                                            y: 20,
-                                            label: "Chronic Obstructive Pulmonary Disease"
-                                        }, {
-                                            y: 8,
-                                            label: "Lung Cancer"
-                                        }
-                                    ]
-                                }/>
-                     
-                </div>
+
+                <PieChart title="Deaths Caused by Ambient Air Pollution (WHO)"
+                    dataPoints={
+                        [
+                            {
+                                y: 40,
+                                label: "Ischemic Heart Disease"
+                            },
+                            {
+                                y: 40,
+                                label: "Stroke"
+                            },
+                            {
+                                y: 11,
+                                label: "Chronic Obstructive Pulmonary Disease"
+                            },
+                            {
+                                y: 6,
+                                label: "Lung Cancer"
+                            }, {
+                                y: 3,
+                                label: "Acute Lower Respiratory Infections in Children"
+                            }
+                        ]
+                    }/>
                 <br/>
 
-                <div>
-                    <Tabs defaultActiveKey={"Air Quality"}>
-                        <Tab eventKey='Air Quality' title='Air Quality Trends'>
-                            <AirQualityLineChart/>
-                        </Tab>
-                        <Tab eventKey='Emissions' title='Emission Trends'>
-                            <EmissionsLinechart/>
-                        </Tab>
-                    </Tabs>
-                </div>
+                <PieChart title="Deaths Caused by Indoor Air Pollution (WHO)"
+
+                    dataPoints={
+                        [
+                            {
+                                y: 27,
+                                label: "Pneumonia"
+                            },
+                            {
+                                y: 18,
+                                label: "Stroke"
+                            },
+                            {
+                                y: 27,
+                                label: "Ischaemic Heart Disease"
+                            },
+                            {
+                                y: 20,
+                                label: "Chronic Obstructive Pulmonary Disease"
+                            }, {
+                                y: 8,
+                                label: "Lung Cancer"
+                            }
+                        ]
+                    }/>
+
+
+                <br/>
+
+
+                <AirQualityLineChart/>
+                <br/>
+
+                <EmissionsLinechart/>
+
 
             </div>
         );
