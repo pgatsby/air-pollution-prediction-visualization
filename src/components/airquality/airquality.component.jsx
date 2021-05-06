@@ -97,7 +97,7 @@ class AirQuality extends React.Component {
 
     setTimeout(() => {
       setAirQuality(this.didAirQualityLoad);
-    }, 7000);
+    }, 3000);
   }
 
   retrieveDataFromCity(cityName){
@@ -167,7 +167,7 @@ class AirQuality extends React.Component {
 
     setTimeout(() => {
       setAirQuality(this.didAirQualityLoad);
-    }, 7000);
+    }, 3000);
   }
 
   componentDidMount() {
