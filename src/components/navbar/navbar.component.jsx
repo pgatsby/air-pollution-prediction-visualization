@@ -10,7 +10,6 @@ const Navbar = () => (
     <div className="container-fluid">
       <span className="navbar-brand mb-0 h1">
         <Logo className="logo" />
-        Air Pollution
       </span>
       <button
         className="navbar-toggler"
@@ -26,7 +25,10 @@ const Navbar = () => (
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
           <Link className="nav-link active" aria-current="page" to="/">
-            Home
+            Air Pollution
+          </Link>
+          <Link className='nav-link' to='/dashboard'>
+            Dashboard
           </Link>
           {/* <Link className="nav-link" to="/about">
             About
