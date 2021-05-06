@@ -7,14 +7,18 @@ class AirQuality extends React.Component {
   didAirQualityLoad = false;
   constructor(props) {
     super(props);
-    this.ForecastUrl =
+    this.PostcodeForecastUrl =
       "https://api.weatherbit.io/v2.0/forecast/daily?postal_code=";
+    this.CityForecastUrl = 
+      "https://api.weatherbit.io/v2.0/forecast/daily?city="
     //this.AqiUrl = "https://api.weatherbit.io/v2.0/current/airquality?postal_code=";
-    this.AqiUrl = "https://api.weatherbit.io/v2.0/current?postal_code=";
+    this.PostcodeAqiUrl = "https://api.weatherbit.io/v2.0/current?postal_code=";
+    this.CityAqiUrl = "https://api.weatherbit.io/v2.0/current/?city="
     // this.key = process.env.REACT_APP_WEATHERBIT_KEY;
     this.key = "44fff5c2698043ac8e8946d23fcf6197";
     this.state = {
       postalCode: "90012",
+      check: null,
       cityName: null,
       stateCode: null,
       aqiCode: null,
@@ -27,10 +31,10 @@ class AirQuality extends React.Component {
     };
   }
 
-  retrieveData(postalCode) {
+  retrieveDataFromPostal(postalCode) {
     const { setAirQuality } = this.props;
     fetch(
-      this.ForecastUrl +
+      this.PostcodeForecastUrl +
         this.state.postalCode +
         "&days=5&units=I&key=" +
         this.key
@@ -80,7 +84,77 @@ class AirQuality extends React.Component {
         });
       });
 
-    fetch(this.AqiUrl + this.state.postalCode + "&key=" + this.key)
+    fetch(this.PostcodeAqiUrl + this.state.postalCode + "&key=" + this.key)
+      .then((response) => response.json())
+      .then((data) => {
+        this.didAirQualityLoad = true;
+        this.setState({
+          cityName: data.data[0].city_name,
+          stateCode: data.data[0].state_code,
+          aqiCode: data.data[0].aqi,
+        });
+      });
+
+    setTimeout(() => {
+      setAirQuality(this.didAirQualityLoad);
+    }, 7000);
+  }
+
+  retrieveDataFromCity(cityName){
+    const { setAirQuality } = this.props;
+    fetch(
+      this.CityForecastUrl +
+        this.state.postalCode +
+        "&country=US"+
+        "&days=5&units=I&key=" +
+        this.key
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          postalCode: "",
+          //cityName: data.city_name,
+          //stateCode: data.state_code,
+
+          weatherTemp: [
+            data.data[0].temp,
+            data.data[1].temp,
+            data.data[2].temp,
+            data.data[3].temp,
+            data.data[4].temp,
+          ],
+          weatherMinTemp: [
+            data.data[0].min_temp,
+            data.data[1].min_temp,
+            data.data[2].min_temp,
+            data.data[3].min_temp,
+            data.data[4].min_temp,
+          ],
+          weatherMaxTemp: [
+            data.data[0].max_temp,
+            data.data[1].max_temp,
+            data.data[2].max_temp,
+            data.data[3].max_temp,
+            data.data[4].max_temp,
+          ],
+          weatherIcon: [
+            data.data[0].weather.icon,
+            data.data[1].weather.icon,
+            data.data[2].weather.icon,
+            data.data[3].weather.icon,
+            data.data[4].weather.icon,
+          ],
+          date: [
+            data.data[0].datetime,
+            data.data[1].datetime,
+            data.data[2].datetime,
+            data.data[3].datetime,
+            data.data[4].datetime,
+          ],
+        });
+      });
+
+    fetch(this.CityAqiUrl + this.state.postalCode + "&country=US" + "&key=" + this.key)
       .then((response) => response.json())
       .then((data) => {
         this.didAirQualityLoad = true;
@@ -97,16 +171,25 @@ class AirQuality extends React.Component {
   }
 
   componentDidMount() {
-    this.retrieveData();
+    this.retrieveDataFromPostal();
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    try {
-      this.retrieveData(this.state.postalCode);
-    } catch (e) {
-      alert("Not a valid Zip Code!");
+
+    let parsed = parseInt(this.state.postalCode);
+
+    if (isNaN(parsed)){
+      this.retrieveDataFromCity(this.state.postalCode);
+    }else{
+      try {
+        this.retrieveDataFromPostal(this.state.postalCode);
+      } catch (e) {
+        alert("Not a valid zipcode");
+        
+      }
     }
+    
     this.setState({ postalCode: "" });
   };
 
