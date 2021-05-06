@@ -35,12 +35,12 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className="home-page">
-        <AirQuality />
+        {/* <AirQuality />
         <MapForm
           id={this.state.id}
           handleSubmit={this.handleSubmit}
           handleClick={this.handleClick}
-        />
+        /> */}
         <div className="map-row row h-100 w-100">
           <div className="col-12 col-md-2">
             <div
@@ -53,7 +53,7 @@ class HomePage extends React.Component {
             <Map id={this.state.id} />
           </div>
         </div>
-        <div className='graph-container dashboard'>
+        {/* <div className='graph-container dashboard'>
 
           <Facts/>
           <br/>
@@ -64,7 +64,7 @@ class HomePage extends React.Component {
        
         <div className='article-container dashboard'>
           <Articles/>
-        </div>
+        </div> */}
        
        
       </div>
