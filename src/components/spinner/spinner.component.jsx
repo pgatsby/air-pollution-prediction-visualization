@@ -4,7 +4,7 @@ import "./spinner.style.scss";
 const Spinner = () => {
   return (
     <div className="spinner d-flex justify-content-center align-items-center">
-      <div>Please Wait We Are Loading the Content... </div>
+      <div>Please Wait While We Load the Content... </div>
       
       <div className="spinner-border" role="status">
         <span className="sr-only">Loading...</span>
