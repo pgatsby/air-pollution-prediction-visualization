@@ -217,7 +217,7 @@ class AirQuality extends React.Component {
               <input
                 className="form-control form-control-lg"
                 type="text"
-                placeholder="Enter Zip Code Here"
+                placeholder="Enter zipcode or city name here..."
                 value={this.state.postalCode}
                 onChange={this.handleChange}
                 name="postalCode"
