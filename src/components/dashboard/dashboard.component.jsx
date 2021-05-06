@@ -10,7 +10,7 @@ import MemorialColiseumHistorical from './graphs/historical/memorialcoliseum-his
 import OpenWeatherMapLive from './graphs/live/openweathermap-live.component.jsx';
 import BroadwayLive from './graphs/live/broadway-live.component.jsx';
 import MemorialColiseumLive from './graphs/live/memorialcoliseum-live.component.jsx';
-import PieChart from "./graphs/piechart.component.jsx";
+import BarChart from "./graphs/barchart.component.jsx";
 import LincolnHeightsLive from './graphs/live/lincolnheights-live.component.jsx';
 import LincolnHeightsHistorical from './graphs/historical/lincolnheights-historical.component.jsx';
 import MagnoliaLive from './graphs/live/magnolia-live.component.jsx';
@@ -74,7 +74,7 @@ export default class Dashboard extends Component {
                 </div>
 
                 <br/>
-                <PieChart title="Greenhouse Gas Emissions By Sectors (EPA)"
+                <BarChart title="Greenhouse Gas Emissions By Sectors (EPA)"
                     dataPoints={
                         [
                             {
@@ -101,7 +101,7 @@ export default class Dashboard extends Component {
                 <br/>
 
 
-                <PieChart title="Deaths Caused by Ambient Air Pollution (WHO)"
+                <BarChart title="Deaths Caused by Ambient Air Pollution (WHO)"
                     dataPoints={
                         [
                             {
@@ -127,7 +127,7 @@ export default class Dashboard extends Component {
                     }/>
                 <br/>
 
-                <PieChart title="Deaths Caused by Indoor Air Pollution (WHO)"
+                <BarChart title="Deaths Caused by Indoor Air Pollution (WHO)"
 
                     dataPoints={
                         [
