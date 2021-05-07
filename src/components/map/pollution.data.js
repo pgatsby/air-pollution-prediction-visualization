@@ -89,15 +89,8 @@ var busLayer = new FeatureLayer({
 //conditions
 
 var heartMortality = new FeatureLayer({
-  portalItem:{
-    id: "2b17d9d0f59f44b98ca65bd7333aa283",
-  },
-});
-
-var heartHospitalization = new FeatureLayer({
-  portalItem:{
-    id: "2edc89f4a11f458c97c44c4deb9e0f6d",
-  },
+  title: "Density of Asthma Per Census Tract (OEHHA)",
+  url: 'https://services1.arcgis.com/PCHfdHz4GlDNAhBb/ArcGIS/rest/services/CES3FINAL_AGOL/FeatureServer/1'
 });
 
 var infrastructureGroupLayer = new GroupLayer({
@@ -147,7 +140,7 @@ const POLLUTION_DATA = [
   },
   {
     id:3,
-    layers: [heartHospitalization, heartMortality]
+    layers: [heartMortality]
   }
 ];
 
