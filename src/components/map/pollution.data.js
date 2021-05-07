@@ -86,6 +86,20 @@ var busLayer = new FeatureLayer({
   },
 });
 
+//conditions
+
+var heartMortality = new FeatureLayer({
+  portalItem:{
+    id: "2b17d9d0f59f44b98ca65bd7333aa283",
+  },
+});
+
+var heartHospitalization = new FeatureLayer({
+  portalItem:{
+    id: "2edc89f4a11f458c97c44c4deb9e0f6d",
+  },
+});
+
 var infrastructureGroupLayer = new GroupLayer({
   title: "Infrastructure",
   visible: true,
@@ -131,6 +145,10 @@ const POLLUTION_DATA = [
       
     ],
   },
+  {
+    id:3,
+    layers: [heartHospitalization, heartMortality]
+  }
 ];
 
 export default POLLUTION_DATA;

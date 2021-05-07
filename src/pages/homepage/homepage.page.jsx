@@ -42,15 +42,47 @@ class HomePage extends React.Component {
           handleClick={this.handleClick}
         /> */}
         <div className="map-row row h-100 w-100">
+          <div className="col-md-12 title" >
+            <h2>Air Quality</h2>
+            <p>Air pollution remains one of the biggest issues Los Angeles faces. Find current air quality conditions in Los Angeles and other areas by interacting with the map.</p>
+          </div>
           <div className="col-12 col-md-2">
             <div
               className="layerlist-content"
-              id="layerlist"
+              id="layerlist1"
               ref={this.listRef}
             ></div>
           </div>
           <div className="col-12 col-md-10">
-            <Map id={this.state.id} />
+            <Map id={1} />
+          </div>
+          <div className="col-md-12 second-title" >
+            <h2>Pollution Sources</h2>
+            <p>There are many sources of air pollution and they all contribute in varying degrees. Find current sources by interacting with the map.</p>
+          </div>
+          <div className="col-12 col-md-2">
+            <div
+              className="layerlist-content"
+              id="layerlist2"
+              ref={this.listRef}
+            ></div>
+          </div>
+          <div className="col-12 col-md-10">
+            <Map id={2} />
+          </div>
+          <div className="col-md-12 second-title" >
+            <h2>Heart Disease</h2>
+            <p>Heart disease is one of the common sideeffects of unhealthy air quality. Find more information on hospitalization and mortality rates by interacting with the map</p>
+          </div>
+          <div className="col-12 col-md-2">
+            <div
+              className="layerlist-content"
+              id="layerlist3"
+              ref={this.listRef}
+            ></div>
+          </div>
+          <div className="col-12 col-md-10">
+            <Map id={3} />
           </div>
         </div>
         {/* <div className='graph-container dashboard'>

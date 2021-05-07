@@ -38,7 +38,7 @@ function Map({ id }) {
         map,
         container: mapDiv.current,
         center: [-118.2437, 34.0522],
-        zoom: 11,
+        zoom: 10,
         minScale: 0,
         maxScale: 10000,
       });
@@ -54,7 +54,7 @@ function Map({ id }) {
       view.when(() => {
         new LayerList({
           view: view,
-          container: "layerlist",
+          container: "layerlist" + id.toString(),
         });
       });
 
