@@ -42,6 +42,12 @@ class HomePage extends React.Component {
           handleClick={this.handleClick}
         /> */}
         <div className="map-row row h-100 w-100">
+          <div className="col-md-12 title">
+            These maps showcase current air quality conditions taken from various sensors scattered throughout Los Angeles.
+            They also pinpoint some of the common sources of air pollution as stated by <a href='https://www.nrdc.org/stories/air-pollution-everything-you-need-know'>NRDC</a>,
+             <a href='https://phys.org/news/2016-04-air-pollution.html'>PHYS</a>, and <a href='https://www.aqi.in/blog/here-are-the-10-main-causes-of-air-pollution/'>AQI</a>.
+             They also showcase heart disease mortality rates as well as hospitalization rates.
+          </div>
           <div className="col-md-12 title" >
             <h2>Air Quality</h2>
             <p>Air pollution remains one of the biggest issues Los Angeles faces. Find current air quality conditions in Los Angeles and other areas by interacting with the map.</p>
@@ -58,7 +64,10 @@ class HomePage extends React.Component {
           </div>
           <div className="col-md-12 second-title" >
             <h2>Pollution Sources</h2>
-            <p>There are many sources of air pollution and they all contribute in varying degrees. Find current sources by interacting with the map.</p>
+            <p>
+              There are many sources of air pollution and they all contribute in varying degrees.
+              Find current sources by interacting with the map.
+            </p>
           </div>
           <div className="col-12 col-md-2">
             <div
@@ -71,8 +80,8 @@ class HomePage extends React.Component {
             <Map id={2} />
           </div>
           <div className="col-md-12 second-title" >
-            <h2>Heart Disease</h2>
-            <p>Heart disease is one of the common sideeffects of unhealthy air quality. Find more information on hospitalization and mortality rates by interacting with the map</p>
+            <h2>Asthma</h2>
+            <p>People who have asthma generally suffer more from unhealthy air quality. This map displays the density of people who have asthma per census tract where the darker the color, the more dense.</p>
           </div>
           <div className="col-12 col-md-2">
             <div
