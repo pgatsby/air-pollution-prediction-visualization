@@ -16,7 +16,7 @@ var esriAirLayer = new FeatureLayer({
 });
 
 var wildFireLayer = new FeatureLayer({
-  title: "Wild Fires",
+  title: "Prescribed Fires and Wild Fires",
   portalItem: {
     id: "d957997ccee7408287a963600a77f61f",
   },
