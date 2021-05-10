@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import ArcGISMap from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import LayerList from "@arcgis/core/widgets/LayerList";
+import Legend from '@arcgis/core/widgets/Legend';
 
 import POLLUTION_DATA from "./pollution.data.js";
 import "./map.style.scss";
@@ -43,6 +44,10 @@ function Map({ id }) {
         maxScale: 10000,
       });
 
+      const legend = new Legend({
+        view: view
+      })
+
       state.data.map((data) => {
         if (state.id === data.id) {
           data.layers.map((layer) => {
@@ -59,6 +64,7 @@ function Map({ id }) {
       });
 
       view.ui.move("zoom", "top-right");
+      view.ui.add(legend, "bottom-right");
       map.addMany(layers);
     }
   }, [state]);
